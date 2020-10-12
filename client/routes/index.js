@@ -14,7 +14,11 @@ async function getServers(){
       .catch(function (error) {
         // handle error
         console.log(error);
-        return "failed"
+        return {
+          data:{
+            server: "Failed"
+          }
+        }
       })
     const serverData = response.data;
     if (!servers.includes(serverData.server)){
