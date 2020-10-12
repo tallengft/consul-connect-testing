@@ -10,6 +10,7 @@ let count = []
 
 async function getServers(){
   for(let i=0; i < QTY; i++){
+    console.log("Trying Server :" + UPSTREAM_URIS)
     const response = await axios.get(UPSTREAM_URIS)
     const serverData = response.data;
     if (!servers.includes(serverData.server)){
@@ -24,7 +25,7 @@ async function getServers(){
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  console.log("Testing server " + QTY + " times.") 
+  console.log("Testing " + UPSTREAM_URIS + " " + QTY + " times.") 
   res.render('index', { title: 'Client', servers: servers, count: count, qty: QTY});
 });
 
