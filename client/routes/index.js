@@ -10,7 +10,6 @@ let count = []
 
 async function getServers(){
   for(let i=0; i < QTY; i++){
-    console.log("Trying Server :" + UPSTREAM_URIS)
     const response = await axios.get(UPSTREAM_URIS)
     const serverData = response.data;
     if (!servers.includes(serverData.server)){
