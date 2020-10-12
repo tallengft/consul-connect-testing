@@ -30,6 +30,8 @@ consul members
 # Zero Trust Network
 Consul service mesh allows you to deploy applications into a zero-trust network. A zero-trust network is a network where nothing is trusted automatically: all connections must be verified and authorized. This paradigm is important in microservices and multi-cloud environments where many applications and services are running in the same network.
 
+In this section we will deploy two services, server and ui, into Consul's service mesh running on a Kubernetes cluster. The two services will use Consul to discover each other and communicate over mTLS with sidecar proxies. This is the first step in deploying application into a zero-trust network.
+
 ![Web API Proxy](docs/img/web-api-proxy.png)
 
 ## Deploy Tutoiral services
