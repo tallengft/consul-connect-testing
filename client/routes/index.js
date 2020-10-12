@@ -13,10 +13,10 @@ async function getServers(){
     const response = await axios.get(UPSTREAM_URIS)
       .catch(function (error) {
         // handle error
-        console.log(error);
+        console.log('error connectiong to: ' + UPSTREAM_URIS);
         return {
           data:{
-            server: "Failed"
+            server: "Failed To Connect"
           }
         }
       })
