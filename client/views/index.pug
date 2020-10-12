@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  div(class='container')
+    h1= title
+    div(class='d-flex justify-content-center')
+      canvas(id='hitChart'  style="position: relative; height:40vh; width:80vw")
+    table(class="table")
+      thead
+        tr
+          th(scope="col") Server
+          th(scope="col") Qty Returned
+      tbody
+        each server, index in servers
+          tr
+            td= server
+            td= count[index]
+
+  script.
+    var ctx = document.getElementById('hitChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: "#{servers}".split(","),
+      datasets: [{
+        label: '# of Hits',
+        data: "#{count}".split(","),
+        backgroundColor: ["red", "blue", "green", "orange", "purple", "yellow", "red", "blue", "green", "orange", "purple", "yellow", "red", "blue", "green", "orange", "purple", "yellow"],
+        }]
+    },
+    options:{
+      cutoutPercentage:50,
+      legend: {
+        display: false
+      }
+    }
+    });
