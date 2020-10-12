@@ -51,3 +51,21 @@ kubectl port-forward service/web 9090:9090 --address 0.0.0.0
 kubectl delete -f k8s_config/api.yml
 kubectl delete -f k8s_config/web.yml
 ```
+
+## Deploy Example Server/Client services from this repo
+```bash
+kubectl apply -f ./k8s_config/server.yml
+kubectl apply -f ./k8s_config/client.yml
+kubectl get deployments.apps --watch
+
+kubectl port-forward service/hashicorp-consul-ui 18500:80 --address 0.0.0.0
+kubectl port-forward service/client 3000:3000 --address 0.0.0.0
+```
+[Local Link](http://127.0.0.1:18500/)
+[Fake Service](http://127.0.0.1:9090/ui)
+
+## Cleanup Example Server/Client services from this repo
+```bash
+kubectl delete -f k8s_config/server.yml
+kubectl delete -f k8s_config/client.yml
+```
