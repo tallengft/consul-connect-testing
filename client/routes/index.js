@@ -3,7 +3,7 @@ var router = express.Router();
 const axios = require('axios').default;
 
 const UPSTREAM_URIS = process.env.UPSTREAM_URIS || 'http://localhost:3000';
-const QTY = process.env.UPSTREAM_URIS || 50; //Ammount of times to hit upstream uri's endpoint
+const QTY = process.env.QTY || 50; //Ammount of times to hit upstream uri's endpoint
 
 let servers = []
 let count = []
