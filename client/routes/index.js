@@ -25,7 +25,7 @@ async function getServers(){
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  await getServers();
+  console.log("Testing server " + QTY + " times.") 
   res.render('index', { title: 'Client', servers: servers, count: count, qty: QTY});
 });
 

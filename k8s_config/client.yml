@@ -18,16 +18,17 @@ spec:
         app: client
       annotations:
         'consul.hashicorp.com/connect-inject': 'true'
-        'consul.hashicorp.com/connect-service-upstreams': 'server:3000'
+        'consul.hashicorp.com/connect-service-upstreams': 'server:3001'
     spec:
       containers:
         - name: client
           image: tallengft/fake-client:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
             - name: 'UPSTREAM_URIS'
-              value: 'http://localhost:3000'
+              value: 'http://localhost:3001'
 
 ---
 # Service to expose web frontend
