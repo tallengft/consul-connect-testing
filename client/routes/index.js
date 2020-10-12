@@ -11,6 +11,11 @@ let count = []
 async function getServers(){
   for(let i=0; i < QTY; i++){
     const response = await axios.get(UPSTREAM_URIS)
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        return "failed"
+      })
     const serverData = response.data;
     if (!servers.includes(serverData.server)){
       console.log("Found new server: " + serverData.server)
