@@ -33,6 +33,6 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: ./server/Dockerfile
+          file: ./server/Dockerfile
           registry: docker.pkg.github.com
           repository: tallengft/server
