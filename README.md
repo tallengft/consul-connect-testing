@@ -69,3 +69,37 @@ kubectl port-forward service/client 3000:3000 --address 0.0.0.0
 kubectl delete -f k8s_config/server.yml
 kubectl delete -f k8s_config/client.yml
 ```
+
+# Zero-trust Network
+Above we deployed two services into your Consul service mesh and secured service-to-service communication with sidecar proxies. This is the first step to configure a zero-trust network and ensure that the communication between your services is automatically verified and encrypted using mutual TLS (mTLS). The second step is to ensure all connections are authorized. Before microservices, authorization was defined with firewall rules and routing tables.
+
+## Create Block All Intention
+**CLI**
+```bash
+kubectl exec -it hashicorp-consul-server-0 /bin/sh
+consul intention create -deny "*" "*"
+consul intention check web api
+```
+
+**UI**
+```bash
+kubectl port-forward service/hashicorp-consul-ui 18500:80 --address 0.0.0.0
+```
+
+[Go To Consul UI](http://127.0.0.1:18500/)
+
+* Intentions > Create
+* Source (All Services)
+* Destination (All Services)
+
+## Permit Service Communication
+**CLI**
+```bash
+kubectl exec -it hashicorp-consul-server-0 /bin/sh
+consul intention create -allow web api
+consul intention create -allow client server
+```
+
+|![Block All](docs/img/deny.png)|![Allow client server](docs/img/allow.png)|
+|:--:|:--:|
+|*Block All*||*Allow client server*|
