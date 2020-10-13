@@ -5,10 +5,11 @@ const axios = require('axios').default;
 const UPSTREAM_URIS = process.env.UPSTREAM_URIS || 'http://localhost:3000';
 const QTY = process.env.QTY || 50; //Ammount of times to hit upstream uri's endpoint
 
-let servers = []
-let count = []
 
 async function getServers(){
+  let servers = []
+  let count = []
+
   for(let i=0; i < QTY; i++){
     const response = await axios.get(UPSTREAM_URIS)
       .catch(function (error) {
@@ -29,13 +30,18 @@ async function getServers(){
     const serverIndex = servers.indexOf(serverData.server);
     count[serverIndex] = count[serverIndex] + 1;
   }
+
+  return {
+    servers: servers,
+    count: count
+  }
 }
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   console.log("Testing " + UPSTREAM_URIS + " " + QTY + " times.") 
-  await getServers();
-  res.render('index', { title: 'Client', servers: servers, count: count, qty: QTY});
+  const servers = await getServers();
+  res.render('index', { title: 'Client', servers: servers.servers, count: servers.count, qty: QTY});
 });
 
 module.exports = router;
