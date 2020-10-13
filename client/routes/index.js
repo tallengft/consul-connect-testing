@@ -34,7 +34,7 @@ async function getServers(){
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   console.log("Testing " + UPSTREAM_URIS + " " + QTY + " times.") 
-  getServers();
+  await getServers();
   res.render('index', { title: 'Client', servers: servers, count: count, qty: QTY});
 });
 
