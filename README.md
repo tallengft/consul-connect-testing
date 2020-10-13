@@ -62,7 +62,7 @@ kubectl port-forward service/hashicorp-consul-ui 18500:80 --address 0.0.0.0
 kubectl port-forward service/client 3000:3000 --address 0.0.0.0
 ```
 [Local Link](http://127.0.0.1:18500/)
-[Fake Service](http://127.0.0.1:9090/ui)
+[Dashboard](http://127.0.0.1:3000)
 
 ## Cleanup Example Server/Client services from this repo
 ```bash
